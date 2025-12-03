@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUP CpE OJT Company Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-circle">PUP</div>
+                <div class="header-text">
+                    <h1>OJT Company Finder</h1>
+                    <p>Computer Engineering • Polytechnic University of the Philippines</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <!-- Admin Controls -->
+        <div class="admin-panel">
+            <button id="addCompanyBtn" class="btn btn-primary">+ Add New Company</button>
+            <button id="exportBtn" class="btn btn-secondary">Export to CSV</button>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="search-section">
+            <div class="search-bar">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search companies, locations, or keywords...">
+            </div>
+            <div class="filter-group">
+                <svg class="filter-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <select id="categoryFilter">
+                    <option value="All">All Categories</option>
+                    <option value="Telecommunications">Telecommunications</option>
+                    <option value="IT Services">IT Services</option>
+                    <option value="Power & Utilities">Power & Utilities</option>
+                    <option value="Semiconductors">Semiconductors</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Results Count -->
+        <div class="results-count">
+            <p>Found <span id="resultsCount">0</span> companies with active MOA</p>
+        </div>
+
+        <!-- Companies Grid -->
+        <div id="companiesGrid" class="companies-grid"></div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <h3>No companies found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Company -->
+    <div id="companyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Company</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="companyForm">
+                <input type="hidden" id="companyId">
+                
+                <div class="form-group">
+                    <label for="companyName">Company Name *</label>
+                    <input type="text" id="companyName" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="companyCategory">Category *</label>
+                        <select id="companyCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Telecommunications">Telecommunications</option>
+                            <option value="IT Services">IT Services</option>
+                            <option value="Power & Utilities">Power & Utilities</option>
+                            <option value="Semiconductors">Semiconductors</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyLocation">Location *</label>
+                        <input type="text" id="companyLocation" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="moaExpiry">MOA Expiry Date *</label>
+                        <input type="date" id="moaExpiry" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="availableSlots">Available Slots *</label>
+                        <input type="number" id="availableSlots" min="1" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea id="description" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactPerson">Contact Person *</label>
+                    <input type="text" id="contactPerson" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="url" id="website">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveBtn">Save Company</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p class="footer-title">© 2024 Polytechnic University of the Philippines</p>
+            <p class="footer-subtitle">College of Engineering - Computer Engineering Department</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
